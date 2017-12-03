@@ -3,13 +3,30 @@ body {
     color: #cccccc;
     font-family: "Source Code Pro", monospace;
     font-size: 14pt;
-    min-width: 60em;
+    /*min-width: 60em;*/
 }
-*, *::before, *::after {font: inherit; box-sizing: border-box}
-img { border:0; }
-a, button { outline:0; }
-main, figure, figcaption { display:block; }
-pre, code { font-family: "Source Code Pro", monospace; }
+
+*, *::before, *::after {
+    font: inherit;
+    box-sizing: border-box
+}
+
+img {
+    border: 0;
+}
+
+a, button {
+    outline: 0;
+}
+
+main, figure, figcaption {
+    display: block;
+}
+
+pre, code {
+    font-family: "Source Code Pro", monospace;
+}
+
 header, main {
     -webkit-text-size-adjust: none;
 }
@@ -18,15 +35,18 @@ a, button {
     text-decoration: none;
     color: #009900;
 }
+
 button {
     padding: 0;
     background: none;
     border: none;
     cursor: pointer;
 }
+
 a:hover, button:hover {
     color: #99ff99;
 }
+
 button[disabled], button[disabled]:hover {
     color: #333340;
     cursor: auto;
@@ -36,6 +56,7 @@ h1, h2 {
     font-size: 1em;
     font-weight: normal;
 }
+
 code {
     position: relative;
     display: inline-block;
@@ -44,11 +65,15 @@ code {
     outline: 1px solid #333340;
     background: #10101a;
 }
+
 pre {
     background: #10101a;
     outline: 1px solid #333340;
     font-size: 80%;
+    max-width: 100%;
+    overflow-x: auto;
 }
+
 pre code {
     outline: none;
     padding: 2px 0;
@@ -58,15 +83,18 @@ pre.wrap {
     max-width: 100%;
     white-space: pre-wrap;
 }
-pre.line-numbers{
+
+pre.line-numbers {
     counter-reset: line;
     white-space: pre;
 }
-pre.line-numbers code{
+
+pre.line-numbers code {
     counter-increment: line;
     margin-left: -3em;
 }
-pre.line-numbers code:before{
+
+pre.line-numbers code:before {
     content: counter(line);
     -webkit-user-select: none;
     display: inline-block;
@@ -76,9 +104,25 @@ pre.line-numbers code:before{
     opacity: 0.5;
 }
 
+.table-wrapper {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+table.table-code {
+    background: #10101a;
+    outline: 1px solid #333340;
+    font-size: 80%;
+}
+
+table.table-code td {
+    padding-right: 0.5em;
+}
+
 .quiet {
     opacity: .5;
 }
+
 p.wrap {
     width: 45em;
 }
@@ -89,44 +133,54 @@ header {
     z-index: 100;
     margin-bottom: 2em;
 }
+
 header h1 {
     display: inline-block;
     margin: 0;
     padding-right: 1em;
 }
+
 header h1 a, header h1 span {
     display: inline-block;
     text-decoration: none;
     color: #00cc00;
     text-shadow: 0 0 2px #00cc00, 0 0 5px #00cc00;
 }
+
 header h1 a:hover {
     color: #99ff99;
     text-shadow: 0 0 2px #99ff99, 0 0 5px #99ff99;
 }
+
 header h1.title-event .title-event-wrap {
     opacity: .33;
 }
+
 header .user {
     display: inline-block;
     padding-left: 1em;
 }
+
 header .user .star-count {
     color: #ffff66;
 }
+
 header nav {
     display: inline-block;
 }
+
 header nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
     display: inline-block;
 }
+
 header nav li {
     display: inline-block;
     padding: 0 .5em;
 }
+
 header nav a {
     display: inline-block;
     text-decoration: none;
@@ -154,61 +208,74 @@ input[type="submit"] {
     color: #009900;
     cursor: pointer;
 }
+
 input[type="submit"]:hover {
     color: #99ff99;
 }
+
 *::-moz-focus-inner {
     padding: 0;
     border: 0
 }
 
 article {
-    width: 45em;
+    max-width: 45em;
     margin-bottom: 2em;
     margin-top: 2em;
 }
+
 article:first-child {
     margin-top: 0;
 }
+
 article h2 {
     color: #ffffff;
     margin-top: 1em;
     margin-bottom: 1em;
     white-space: nowrap;
 }
+
 article h2 + * {
     margin-top: 0;
 }
+
 article em {
     color: #ffffff;
     font-style: normal;
     text-shadow: 0 0 5px #ffffff;
 }
+
 article em.star {
     color: #ffff66;
     font-style: normal;
     text-shadow: 0 0 5px #ffff66;
 }
+
 article a {
     white-space: nowrap;
 }
+
 article .aside {
     opacity: .6;
 }
+
 article ul {
     list-style-type: none;
     padding: 0;
 }
+
 article li {
     padding-left: 2.5em;
     position: relative;
 }
+
 article li:before {
     content: "\00a0\00a0-\00a0";
     position: absolute;
     left: 0;
     top: 0;
 }
+
 article code.number,
 article pre.number {
     word-break: break-all;
