@@ -2,24 +2,24 @@ const dayThree = {
 
     // DAY 1-1
     1: (input) => {
-        const r = ~~(Math.ceil(Math.sqrt(input)) / 2) + 1;
-        const d = (r * 2) - 1;
-        const quarter = (r-1)*2;
-        const index = input - Math.pow(d - 2, 2);
-        const c = Math.abs(((index) % (quarter)) - (r-1));
-        const steps = r + c - 1;
-        return steps;
+        const r = ~~(Math.ceil(Math.sqrt(input)) / 2);
+        const index = input - Math.pow(r * 2 - 1, 2);
+        const c = Math.abs((index % (r * 2)) - r);
+
+        return r === 0 ? r : r + c;
     },
 
     // DAY 1-2
     2: (input) => {
+        /*
         const r = ~~(Math.ceil(Math.sqrt(input)) / 2) + 1;
         const d = (r * 2) - 1;
-        const quarter = (r-1)*2;
+        const quarter = (r - 1) * 2;
         const index = input - Math.pow(d - 2, 2);
-        const c = Math.abs(((index) % (quarter)) - (r-1));
+        const c = Math.abs(((index) % (quarter)) - (r - 1));
         const steps = r + c - 1;
         return steps;
+        */
     }
 
 };
