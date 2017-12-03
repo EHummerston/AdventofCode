@@ -30,7 +30,7 @@ $('.solve').click(function () {
         button.prop('disabled', true);
         const solutionPart = button.closest('.advent-problem').data('problem');
         const code = button.siblings('code, pre');
-        code.text(dayThree[solutionPart](code.text()));
+        code.text(dayThree[solutionPart](Number(code.text())));
         code.removeClass('number');
     }
 });

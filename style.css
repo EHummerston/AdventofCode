@@ -91,7 +91,6 @@ pre.line-numbers {
 
 pre.line-numbers code {
     counter-increment: line;
-    margin-left: -3em;
 }
 
 pre.line-numbers code:before {
@@ -117,6 +116,14 @@ table.table-code {
 
 table.table-code td {
     padding-right: 0.5em;
+}
+
+table.table-code td:last-child {
+    padding-right: 1px;
+}
+
+table.table-code.numbers {
+    text-align: right;
 }
 
 .quiet {

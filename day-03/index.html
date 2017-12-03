@@ -8,62 +8,87 @@
     <script src="../vendor/jquery-3.2.1.min.js"></script>
 </head>
 <body>
-<!--article id="day-3">
+<article id="day-3">
     <div class="advent-problem" data-problem=1>
-        <h2>--- Day 1: Inverse Captcha ---</h2>
-
-        <p>You're standing in a room with "digitization quarantine" written in LEDs along one wall. The only door is
-            locked, but it includes a small interface. "Restricted Area - Strictly No Digitized Users Allowed."</p>
-        <p>It goes on to explain that you may only leave by solving a <a href="https://en.wikipedia.org/wiki/CAPTCHA">captcha</a>
-            to prove you're <em>not</em> a human. Apparently, you only get one millisecond to solve the captcha: too
-            fast for a normal human, but it feels like hours to you.</p>
-        <p>The captcha requires you to review a sequence of digits (your puzzle input) and find the <em>sum</em> of all
-            digits that match the <em>next</em> digit in the list. The list is circular, so the digit after the last
-            digit is the <em>first</em> digit in the list.</p>
+        <h2>--- Day 3: Spiral Memory ---</h2><p>You come across an experimental new kind of memory stored on an <span title="Good thing we have all these infinite two-dimensional grids lying around!">infinite two-dimensional grid</span>.</p>
+<p>Each square on the grid is allocated in a spiral pattern starting at a location marked <code>1</code> and then counting up while spiraling outward. For example, the first few squares are allocated like this:</p>
+        <table class="table-code numbers">
+            <tr>
+                <td>17</td>
+                <td>16</td>
+                <td>15</td>
+                <td>14</td>
+                <td>13</td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>5</td>
+                <td>4</td>
+                <td>3</td>
+                <td>12</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>6</td>
+                <td>1</td>
+                <td>2</td>
+                <td>11</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>7</td>
+                <td>8</td>
+                <td>9</td>
+                <td>10</td>
+            </tr>
+            <tr>
+                <td>21</td>
+                <td>22</td>
+                <td>23</td>
+                <td>-></td>
+                <td>..</td>
+            </tr>
+        </table>
+<p>While this is very space-efficient (no squares are skipped), requested data must be carried back to square <code>1</code> (the location of the only access port for this memory system) by programs that can only move up, down, left, or right. They always take the shortest path: the <a href="https://en.wikipedia.org/wiki/Taxicab_geometry">Manhattan Distance</a> between the location of the data and square <code>1</code>.</p>
         <p>Examples:</p>
         <ul>
             <li>
                 <button class="solve">Solve:</button>
-                <code id="1-1-1">1122</code>
+                <code id="3-1-1">1</code>
             </li>
             <li>
                 <button class="solve">Solve:</button>
-                <code id="1-1-2">1111</code>
+                <code id="3-1-2">12</code>
             </li>
             <li>
                 <button class="solve">Solve:</button>
-                <code id="1-1-3">1234</code>
+                <code id="3-1-3">23</code>
             </li>
             <li>
                 <button class="solve">Solve:</button>
-                <code id="1-1-4">91212129</code>
+                <code id="3-1-4">1024</code>
             </li>
         </ul>
 
         <p><em>Solution</em>:</p>
         <pre class="line-numbers">
-            <code>function (input) {</code>
-            <code>&#9;const arr = input.split("").map((x) => Number(x));</code>
-            <code></code>
-            <code>&#9;let result = 0;</code>
-            <code>&#9;for (let i = 0, len = arr.length; i < len; i++) {</code>
-            <code>&#9;&#9;if (arr[i] === arr[(i + 1) % len]) {</code>
-            <code>&#9;&#9;&#9;result += arr[i];</code>
-            <code>&#9;&#9;}</code>
-            <code>&#9;}</code>
-            <code></code>
-            <code>&#9;return result;</code>
-            <code>}</code>
+<code>function (input) {</code>
+<code>&#9;const r = ~~(Math.ceil(Math.sqrt(input)) / 2);</code>
+<code>&#9;const index = input - Math.pow(r * 2 - 1, 2);</code>
+<code>&#9;const c = Math.abs((index % (r * 2)) - r);</code>
+<code></code>
+<code>&#9;return r === 0 ? r : r + c;</code>
+<code>}</code>
         </pre>
         <ul>
             <li>
                 <button class="solve">Solve:</button>
-                <code class="number" id="1-1-solution">892195969991735837915273868729548694237967495115412399373194562526947585337233793568278265279199883197167634791293177986152566236718332617536487236879747167999983363832257912445756887314879229925864477761357139855548522513798899853896612387146687716264599943289416326727256525173953861534244979466587895429399159924916364476319573895566795393368411672387263615582128377676293612892723762237191146714286233543514411813323197995953854871628225358543514157867372265718724276911699514971458844849349726276329135118243155698271218844347387457343656446381799296893222256198484465873714311777937421161581798189554141474236239447612421883232173914183732126332838194648583472419154369952477422666389517569944428464617457124369349242479612422673241361777576466946622932243728551273284837934497511114334421486262244982914734452113946361245377351849815584855691778894798219822463298387771923329337634394654439458564233259451453345316753241438267739439225497515276522424441532462541528195782818326918562247278496495764435386667383577543385186827269732261223156824351164841648424564925198783625721396988984481558391866483955533972212164693898955412719161648411279149413443192896864258215498543827458438871355879336892721675937111952479183496982825163456282747678364612135596373533447719867384667516572262124225585623974278833981365494628646614588114147473559138853453189448624976774641922469183942857695986376428944876851497914443873513862319484181787593572987444669767939526294424531262999564948571142342741129862311311313166798363442745792896227642881893134498151552326647933689596516859342242244584714818773791567187322217164347852843751875979415198165627534263527828414549217234322361937785185174993256753483876378332521824515977173397535784236923629636713469151526399149548322849831431526219478653861754364155275865511643923249858589466142474763778413826829226663398467569555747267195129525138917561785436449855933951538973995881954521124753369223898312843734771532342383282987422334196585128526526324291777689689492346231786335851551413876834969878</code>
+                <code id="3-1-solution">368078</code>
             </li>
         </ul>
     </div>
 
-    <div class="advent-problem" data-problem=2>
+    <!--div-- class="advent-problem" data-problem=2>
         <h2>--- Part Two ---</h2>
         <p>
             Now, instead of considering the <em>next</em> digit, it wants you to consider the digit <em>halfway
@@ -116,9 +141,9 @@
                 <code class="number" id="1-2-solution">892195969991735837915273868729548694237967495115412399373194562526947585337233793568278265279199883197167634791293177986152566236718332617536487236879747167999983363832257912445756887314879229925864477761357139855548522513798899853896612387146687716264599943289416326727256525173953861534244979466587895429399159924916364476319573895566795393368411672387263615582128377676293612892723762237191146714286233543514411813323197995953854871628225358543514157867372265718724276911699514971458844849349726276329135118243155698271218844347387457343656446381799296893222256198484465873714311777937421161581798189554141474236239447612421883232173914183732126332838194648583472419154369952477422666389517569944428464617457124369349242479612422673241361777576466946622932243728551273284837934497511114334421486262244982914734452113946361245377351849815584855691778894798219822463298387771923329337634394654439458564233259451453345316753241438267739439225497515276522424441532462541528195782818326918562247278496495764435386667383577543385186827269732261223156824351164841648424564925198783625721396988984481558391866483955533972212164693898955412719161648411279149413443192896864258215498543827458438871355879336892721675937111952479183496982825163456282747678364612135596373533447719867384667516572262124225585623974278833981365494628646614588114147473559138853453189448624976774641922469183942857695986376428944876851497914443873513862319484181787593572987444669767939526294424531262999564948571142342741129862311311313166798363442745792896227642881893134498151552326647933689596516859342242244584714818773791567187322217164347852843751875979415198165627534263527828414549217234322361937785185174993256753483876378332521824515977173397535784236923629636713469151526399149548322849831431526219478653861754364155275865511643923249858589466142474763778413826829226663398467569555747267195129525138917561785436449855933951538973995881954521124753369223898312843734771532342383282987422334196585128526526324291777689689492346231786335851551413876834969878</code>
             </li>
         </ul>
-    </div>
+    </div-->
 
-</article-->
+</article>
 
 <script src="scripts.js"></script>
 </body>
