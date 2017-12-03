@@ -111,7 +111,7 @@ pre.line-numbers code:before {
 
 table.table-code {
     background: #10101a;
-    outline: 1px solid #333340;
+    border: 1px solid #333340;
     font-size: 80%;
 }
 
